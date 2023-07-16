@@ -1,0 +1,45 @@
+services:
+  database:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: "postgres"
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  scraper:
+    build:
+      dockerfile: Dockerfile 
+      context: ./scraper/
+    depends_on: 
+      - database
+
+  react-app:
+    build:
+      dockerfile: Dockerfile
+      context: ./main-app
+    depends_on:
+      - scraper
+      - api
+    mem_limit: 5g
+
+  nginx:
+    image: nginx:alpine
+    restart: always
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/:/etc/nginx/conf.d/:ro
+    depends_on:
+      - api
+      - react-app
+
+  api:
+    build:
+      dockerfile: Dockerfile
+      context: ./api
+    depends_on:
+      - database
