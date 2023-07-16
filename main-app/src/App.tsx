@@ -16,7 +16,7 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const flatsPerPage = 12;
-  const totalFlats = 100;
+  const totalFlats = 500;
 
   useEffect(() => {
     const fetchFlats = async () => {

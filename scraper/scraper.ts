@@ -64,7 +64,7 @@ async function deleteRecords() {
         client.release();
     }
 }
-const flatsToScrape = 100;
+const flatsToScrape = 500;
 
 async function scrapeData() {
     let parsedFlats: Flat[] = [];
