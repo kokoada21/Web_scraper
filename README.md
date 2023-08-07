@@ -1,4 +1,4 @@
-# Luxonis assignment
+# Sreality scraper
 
 ## How to run:
 
