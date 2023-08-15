@@ -1,5 +1,5 @@
 # Sreality scraper
-
+This application scrapes the first 500 items from Sreality.cz website and saves it into posgres database. The data is then displayed in custom FE application built using React.  
 ## How to run:
 
 1. Clone this repository.
